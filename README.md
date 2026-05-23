@@ -1,16 +1,37 @@
-# EVEZ Vault
+# EVEZ Vault — Autonomous Security & Encryption
 
-Revenue and cost tracking for the EVEZ ecosystem.
+Self-managing encryption and key rotation for the EVEZ stack.
 
-## Run
+## Quick Start
+
 ```bash
-uvicorn vault:app --reload
+git clone https://github.com/EvezArt/evez-vault.git
+cd evez-vault
+pip install -r requirements.txt
+python vault.py
 ```
 
+## Features
+- AES-256 encryption/decryption
+- Automatic key rotation
+- Secret management via environment variables
+- Audit logging for all access
+- Integration with EVEZ MAES event spine
+
 ## API
-- `GET /health` — Health check
-- `GET /report` — Cost report
-- `POST /track?service=...` — Track a cost
+
+```bash
+# Encrypt
+curl -X POST http://localhost:8877/encrypt \
+  -H "Content-Type: application/json" \
+  -d '{"data": "sensitive text"}'
+
+# Decrypt
+curl -X POST http://localhost:8877/decrypt \
+  -H "Content: application/json" \
+  -d '{"token": "encrypted-token-here"}'
+```
 
 ---
-*Built by EVEZ Factory (Steven AI)*
+
+*Part of [EVEZ-OS](https://github.com/EvezArt/evez-os) • $6/mo • Zero API Cost*
